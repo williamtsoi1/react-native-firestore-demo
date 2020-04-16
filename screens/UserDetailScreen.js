@@ -10,6 +10,7 @@ class UserDetailScreen extends Component {
       name: '',
       email: '',
       mobile: '',
+      greeting: '',
       isLoading: true
     };
   }
@@ -24,6 +25,7 @@ class UserDetailScreen extends Component {
           name: user.name,
           email: user.email,
           mobile: user.mobile,
+          greeting: user.greeting,
           isLoading: false
         });
       } else {
@@ -47,12 +49,14 @@ class UserDetailScreen extends Component {
       name: this.state.name,
       email: this.state.email,
       mobile: this.state.mobile,
+      greeting: this.state.greeting,
     }).then((docRef) => {
       this.setState({
         key: '',
         name: '',
         email: '',
         mobile: '',
+        greeting: '',
         isLoading: false,
       });
       this.props.navigation.navigate('UserScreen');
@@ -118,6 +122,13 @@ class UserDetailScreen extends Component {
               placeholder={'Mobile'}
               value={this.state.mobile}
               onChangeText={(val) => this.inputValueUpdate(val, 'mobile')}
+          />
+        </View>
+        <View style={styles.inputGroup}>
+          <TextInput
+              placeholder={'Greeting'}
+              value={this.state.greeting}
+              onChangeText={(val) => this.inputValueUpdate(val, 'greeting')}
           />
         </View>
         <View style={styles.button}>

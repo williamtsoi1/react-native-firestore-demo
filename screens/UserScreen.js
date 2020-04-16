@@ -27,13 +27,16 @@ class UserScreen extends Component {
   getCollection = (querySnapshot) => {
     const userArr = [];
     querySnapshot.forEach((res) => {
-      const { name, email, mobile } = res.data();
+      const { name, email, mobile, greeting } = res.data();
+      var translated_ja = typeof res.data().translated === 'undefined' ? 'undefined' : res.data().translated.ja;
       userArr.push({
         key: res.id,
         res,
         name,
         email,
         mobile,
+        greeting,
+        translated_ja
       });
     });
     this.setState({
@@ -61,6 +64,8 @@ class UserScreen extends Component {
                   bottomDivider
                   title={item.name}
                   subtitle={item.email}
+                  rightTitle={item.greeting}
+                  rightSubtitle={item.translated_ja}
                   onPress={() => {
                     this.props.navigation.navigate('UserDetailScreen', {
                       userkey: item.key

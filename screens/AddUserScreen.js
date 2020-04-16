@@ -10,6 +10,7 @@ class AddUserScreen extends Component {
       name: '',
       email: '',
       mobile: '',
+      greeting: '',
       isLoading: false
     };
   }
@@ -31,11 +32,13 @@ class AddUserScreen extends Component {
         name: this.state.name,
         email: this.state.email,
         mobile: this.state.mobile,
+        greeting: this.state.greeting,
       }).then((res) => {
         this.setState({
           name: '',
           email: '',
           mobile: '',
+          greeting: '',
           isLoading: false,
         });
         this.props.navigation.navigate('UserScreen')
@@ -80,6 +83,13 @@ class AddUserScreen extends Component {
               placeholder={'Mobile'}
               value={this.state.mobile}
               onChangeText={(val) => this.inputValueUpdate(val, 'mobile')}
+          />
+        </View>
+        <View style={styles.inputGroup}>
+          <TextInput
+              placeholder={'Greeting'}
+              value={this.state.greeting}
+              onChangeText={(val) => this.inputValueUpdate(val, 'greeting')}
           />
         </View>
         <View style={styles.button}>
